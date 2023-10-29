@@ -44,7 +44,11 @@ const Login = () => {
       .then(data => {
         if (data.access_token) {
           localStorage.setItem('accessToken', data.access_token);
-          navigate('/');
+          if (userType === 'mentor') {
+            navigate('/mentor-dashboard');
+          } else if (userType === 'student') {
+            navigate('/student-dashboard');
+          }
         } else {
           alert(data.error);
         }
